@@ -1,5 +1,3 @@
-// Currency.js
-
 class Currency {
   constructor(code, name) {
     if (typeof code !== 'string') {
@@ -39,4 +37,4 @@ class Currency {
   }
 }
 
-export default Currency
+export default Currency;
