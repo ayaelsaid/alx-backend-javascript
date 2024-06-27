@@ -50,4 +50,5 @@ class HolbertonCourse {
     this._students = newStudents
   }
 }
+
 export default HolbertonCourse;
