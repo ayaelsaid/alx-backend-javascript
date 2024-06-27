@@ -11,7 +11,7 @@ class HolbertonCourse {
     }
     this._name = name;
     this._length = length;
-    this._students = students
+    this._students = students;
   }
 
   // Getter and setter for name
@@ -47,7 +47,7 @@ class HolbertonCourse {
     if (!Array.isArray(newStudents)) {
       throw new Error('Students must be an array');
     }
-    this._students = newStudents
+    this._students = newStudents;
   }
 }
 
