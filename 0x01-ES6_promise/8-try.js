@@ -3,6 +3,6 @@ export default function divideFunction(numerator, denominator) {
         let result = numerator / denominator;
         return result;
     } else {
-        throw new Error('Cannot divide by 0');
+        throw Error('Cannot divide by 0');
     }
 }
