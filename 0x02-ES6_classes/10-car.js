@@ -18,7 +18,9 @@ class Car {
   }
 
   cloneCar() {
-    return new Car(this._brand, this._motor, this._color);
+    const Constructor = this.constructor;
+    const newCar = new Constructor(this._brand, this._motor, this._color);
+    return newCar;
   }
 }
 
