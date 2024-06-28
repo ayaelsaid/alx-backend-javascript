@@ -1,4 +1,4 @@
-class HolbertonClass {
+export default class HolbertonClass {
   constructor(size, location) {
     if (typeof size !== 'number') {
       throw new Error('Size must be a number');
@@ -41,5 +41,3 @@ class HolbertonClass {
     return this;
   }
 }
-
-export default HolbertonClass;
