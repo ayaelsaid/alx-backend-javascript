@@ -1,5 +1,8 @@
 class Building {
   constructor(sqft) {
+    if (typeof sqft !== 'number') {
+      throw new Error('sqft must be a number');
+    }
     if (this.constructor !== Building) {
       if (typeof this.evacuationWarningMessage !== 'function') {
         throw new Error(
@@ -10,12 +13,9 @@ class Building {
     this.sqft = sqft;
   }
 
-  /**
-   * @param {Number} sqft
-   */
   set sqft(sqft) {
     if (typeof sqft !== 'number') {
-      throw new TypeError('sqft nust be a number');
+      throw new TypeError('sqft must be a number');
     }
     this._sqft = sqft;
   }
