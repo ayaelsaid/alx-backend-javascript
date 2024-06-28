@@ -1,6 +1,6 @@
 import Building from './5-building.js';
 
-class SkyHighBuilding extends Building {
+export default class SkyHighBuilding extends Building {
   constructor(sqft, floors) {
     if (typeof floors !== 'number') {
       throw new Error('floors must be a number');
