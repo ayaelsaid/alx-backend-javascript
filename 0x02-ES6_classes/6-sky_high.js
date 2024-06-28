@@ -6,17 +6,6 @@ export default class SkyHighBuilding extends Building {
     this._floors = floors;
   }
 
-  get sqft() {
-    return this._sqft; // Inherited from Building
-  }
-
-  set sqft(newSqft) {
-    if (typeof newSqft !== 'number') {
-      throw new TypeError('sqft must be a number');
-    }
-    this._sqft = newSqft;
-  }
-
   get floors() {
     return this._floors;
   }
@@ -29,6 +18,6 @@ export default class SkyHighBuilding extends Building {
   }
 
   evacuationWarningMessage() {
-    return `Evacuate slowly the ${this._floors} floors.`;
+    return `Evacuate slowly the ${this.floors} floors`;
   }
 }
