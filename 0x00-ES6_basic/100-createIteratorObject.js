@@ -6,6 +6,6 @@ export default function createIteratorObject(report) {
   for (const value of values) {
       newArray.push(...value);
   }
-  return newArray;
   
+  return newArray;
 }
