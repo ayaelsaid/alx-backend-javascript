@@ -7,7 +7,7 @@ export default function getListStudentIds(array) {
         if (item.hasOwnProperty('id')) {
             return item.id;
         }
-    }) // Filter out any null values (optional)
+    })
 
     return id;
 }
