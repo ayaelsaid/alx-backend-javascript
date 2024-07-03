@@ -21,4 +21,3 @@ export default function updateStudentGradeByCity(students, city, newGrdes) {
 
   return specificCity;
 }
-
