@@ -8,7 +8,6 @@ export default function getListStudentIds(array) {
       return item.id;
     }
     return undefined; // Return undefined or another default value as needed
-    }
   });
 
   return id;
