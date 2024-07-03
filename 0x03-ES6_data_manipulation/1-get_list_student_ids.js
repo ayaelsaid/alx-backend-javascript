@@ -6,8 +6,8 @@ export default function getListStudentIds(array) {
   const id = array.map((item) => {
     if (item.hasOwnProperty('id')) {
       return item.id;
-    } else {
-      return undefined; // Return undefined or another default value as needed
+    }
+    return undefined; // Return undefined or another default value as needed
     }
   });
 
