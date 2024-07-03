@@ -4,6 +4,9 @@ interface Teacher {
   fullTimeEmployee: boolean;
   yearsOfExperience?: number;
   location: string;
-  [prop: string]: any;
+  [prop: string]: any; // Allow any additional properties
 }
 
+interface Directors extends Teacher {
+  numberOfReports: number;
+}
