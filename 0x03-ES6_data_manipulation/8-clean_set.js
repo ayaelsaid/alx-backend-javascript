@@ -1,11 +1,15 @@
 export default function cleanSet(set, startString) {
-    if (typeof startString !== 'string' || startString.length === 0) {
-        return '';
+    if (!set || typeof set !== 'object' || !Symbol.iterator in Object(set)) {
+        return ''; // Return empty string if set is not iterable
     }
 
-    let array = Array.from(set).filter(item => item.startsWith(startString));
+    if (typeof startString !== 'string' || startString.length === 0) {
+        return ''; // Return empty string if startString is not a non-empty string
+    }
 
-    array = array.map(item => item.slice(startString.length));
+    let strings = Array.from(set).filter(item => typeof item === 'string' && item.startsWith(startString));
 
-    return array.join('-');
+    strings = strings.map(item => item.slice(startString.length));
+
+    return strings.join('-');
 }
