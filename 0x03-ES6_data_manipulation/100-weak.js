@@ -3,8 +3,8 @@ export const weakMap = new WeakMap();
 export default function queryAPI(endpoint) {
   if (!weakMap.has(endpoint)) {
     weakMap.set(endpoint, 1);
-  } 
-  let callCount = weakMap.get(endpoint);
+  }
+  const callCount = weakMap.get(endpoint);
   weakMap.set(endpoint, callCount + 1);
 
   if (callCount >= 4) {
