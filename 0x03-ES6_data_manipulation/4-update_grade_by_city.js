@@ -14,9 +14,10 @@ export default function updateStudentGradeByCity(students, city, newGrdes) {
     .map((student) => {
       const grade = newGrdes.find((grade) => grade.studentId === student.id);
       if (grade) {
-        student.grade = grade.grade;
+        return { ...student, grade: grade.grade }; // Use spread operator to avoid mutation
       } else {
-        student.grade = 'N/A';
+        return { ...student, grade: 'N/A' }; // Use spread operator to avoid mutation
+
       }
       return student;
     });
