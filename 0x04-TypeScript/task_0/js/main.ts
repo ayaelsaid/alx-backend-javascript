@@ -1,3 +1,4 @@
+// Define the Student interface
 interface Student {
   firstName: string;
   lastName: string;
@@ -24,20 +25,20 @@ const student2: Student = {
 const studentsList: Student[] = [student1, student2];
 
 // Function to create and render the table
-function renderTable() {
+function renderTable(): void {
   // Create table element
-  const table = document.createElement('table');
+  const table: HTMLTableElement = document.createElement('table');
   table.style.width = '100%';
   table.style.border = '1px solid gray'; // Border style for the entire table
   table.style.borderCollapse = 'collapse'; // Collapse behavior for borders
 
   // Create table header (thead)
-  const thead = document.createElement('thead');
-  const headerRow = document.createElement('tr');
+  const thead: HTMLTableSectionElement = document.createElement('thead');
+  const headerRow: HTMLTableRowElement = document.createElement('tr');
 
   // Create and append table headers (th)
   ['First Name', 'Location'].forEach(headerText => {
-    const th = document.createElement('th');
+    const th: HTMLTableHeaderCellElement = document.createElement('th');
     th.textContent = headerText;
     th.style.backgroundColor = 'lightgray';
     th.style.border = '1px solid gray'; // Adjusted border style for headers
@@ -52,20 +53,20 @@ function renderTable() {
   table.appendChild(thead);
 
   // Create table body (tbody)
-  const tbody = document.createElement('tbody');
+  const tbody: HTMLTableSectionElement = document.createElement('tbody');
 
   // Populate table rows and cells for each student
   studentsList.forEach(student => {
-    const row = document.createElement('tr');
+    const row: HTMLTableRowElement = document.createElement('tr');
 
     // Create and append cells (td)
-    const firstNameCell = document.createElement('td');
+    const firstNameCell: HTMLTableCellElement = document.createElement('td');
     firstNameCell.textContent = student.firstName;
     firstNameCell.style.border = '1px solid gray'; // Adjusted border style for cells
     firstNameCell.style.padding = '.5rem'; // Adjusted padding for cells
     row.appendChild(firstNameCell);
 
-    const locationCell = document.createElement('td');
+    const locationCell: HTMLTableCellElement = document.createElement('td');
     locationCell.textContent = student.location;
     locationCell.style.border = '1px solid gray'; // Adjusted border style for cells
     locationCell.style.padding = '.5rem'; // Adjusted padding for cells
@@ -84,4 +85,3 @@ function renderTable() {
 
 // Call the renderTable function to generate the table
 renderTable();
-
