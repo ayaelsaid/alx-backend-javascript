@@ -4,7 +4,7 @@ export default function getListStudentIds(array) {
   }
 
   const id = array.map((item) => {
-    if (item.hasOwnProperty('id')) {
+    if (Object.prototype.hasOwnProperty.call(item, 'id')) {
       return item.id;
     }
     return undefined; // Return undefined or another default value as needed
