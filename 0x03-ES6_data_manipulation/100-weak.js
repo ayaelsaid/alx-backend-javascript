@@ -8,7 +8,7 @@ export default function queryAPI(endpoint) {
     weakMap.set(endpoint, 0);
   }
   callCount = weakMap.get(endpoint) + 1;
-  if (callCount >= 5) {
+  if (callCount > 5) {
     throw new Error('Endpoint load is high.');
   }
 
