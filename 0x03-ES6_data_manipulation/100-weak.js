@@ -5,7 +5,7 @@ export default function queryAPI(endpoint) {
   let callCount = weakMap.get(endpoint) || 0;
 
   // Increment the call count
-  callCount = callCount + 1;
+  callCount += 1;
 
   // Throw an error if the call count exceeds the limit
   if (callCount >= 5) {
