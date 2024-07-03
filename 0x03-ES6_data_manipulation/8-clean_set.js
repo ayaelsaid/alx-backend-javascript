@@ -1,5 +1,5 @@
 export default function cleanSet(set, startString) {
-  if (!set || typeof set !== 'object' || !Symbol.iterator in Object(set)) {
+  if (!set || typeof set !== 'object') {
     return ''; // Return empty string if set is not iterable
   }
 
