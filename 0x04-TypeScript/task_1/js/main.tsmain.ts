@@ -18,7 +18,7 @@ export interface PrintTeacherFunction {
 export const printTeacher: PrintTeacherFunction = (firstName, lastName) => `${firstName.charAt(0)}. ${lastName}`;
 
 export interface StudentClassConstructor {
-  new (firstName: string, lastName: string): StudentClassI;
+  new(firstName: string, lastName: string): StudentClassI;
 }
 
 export interface StudentClassI {
@@ -35,7 +35,7 @@ export class StudentClass implements StudentClassI {
     this._lastName = lastName;
   }
 
-  workOnHomework() => 'Currently working';
+  workOnHomework = (): string => 'Currently working';
 
-  displayName() => this._firstName;
+  displayName = (): string => this._firstName;
 }
