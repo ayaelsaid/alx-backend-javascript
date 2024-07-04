@@ -35,11 +35,7 @@ export class StudentClass implements StudentClassI {
     this._lastName = lastName;
   }
 
-  workOnHomework() {
-    return 'Currently working';
-  }
+  workOnHomework() => 'Currently working';
 
-  displayName() {
-    return this._firstName;
-  }
+  displayName() => this._firstName;
 }
