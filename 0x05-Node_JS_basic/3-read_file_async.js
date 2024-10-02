@@ -1,14 +1,18 @@
-const fs = require('fs').promises; // Use the promises  ersion of fs
+const fs = require('fs');
 
-const countStudents = async (path) => {
-    try {
-        const data = await fs.readFile(path, 'utf-8'); // Read the file asynchronously
-        const lines = data.trim().split('\n').filter(line => line); // Split and filter empty lines
-        const totalStudents = lines.length;
+const countStudents = (file) => new Promise((resolve, reject) => {
+    fs.readFile(file, 'utf8', (err, data) => {
+        if (err) {
+            return reject(new Error('Cannot load the database'));
+        }
+
+        const lines = data.trim().split('\n').filter((line) => line.trim() !== '');
+        const students = lines.slice(1);
+        const totalStudents = `Number of students: ${students.length}`;
         const countData = {};
 
-        lines.forEach(line => {
-            const eachStudent = line.split(',');
+        for (const student of students) {
+            const eachStudent = student.split(',');
             const studentName = eachStudent[0].trim();
             const fieldName = eachStudent[3].trim();
 
@@ -17,10 +21,10 @@ const countStudents = async (path) => {
             }
             countData[fieldName].count += 1;
             countData[fieldName].names.push(studentName);
-        });
+        }
 
         // Log total students
-        console.log(`Number of students: ${totalStudents}`);
+        console.log(totalStudents);
 
         // Log each field's student data
         for (const field in countData) {
@@ -29,10 +33,10 @@ const countStudents = async (path) => {
             }
         }
 
-        return { totalStudents, countData };
-    } catch (error) {
-        throw new Error('Cannot load the database');
-    }
-};
+        resolve({ totalStudents, countData });
+    });
+});
+
+return countStudents;
 
 module.exports = countStudents;
