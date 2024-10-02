@@ -14,7 +14,7 @@ const countStudents = (file) => {
             const lines = data.split('\n').filter(line => line.trim() !== '');
             const students = lines.slice(1);
 
-            const totalStudents = `Number of students: ${students.length}`;
+            const totalStudents = `Number of students: ${students.length - 1}`;
             let countData = {};
 
             for (const student of students) {
