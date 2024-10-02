@@ -2,21 +2,24 @@ const fs = require('fs');
 
 const countStudents = (file) => {
     return new Promise((resolve, reject) => {
+        // Check if the file exists and is a file
         if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
             return reject(new Error('Cannot load the database'));
         }
 
+        // Read the file asynchronously
         fs.readFile(file, 'utf8', (err, data) => {
             if (err) {
                 return reject(new Error('Cannot load the database'));
             }
 
             const lines = data.split('\n').filter(line => line.trim() !== '');
-            const students = lines.slice(1);
+            const students = lines.slice(1); // Exclude header line
 
             const totalStudents = `Number of students: ${students.length}`;
             let countData = {};
 
+            // Process each student
             for (const student of students) {
                 const eachStudent = student.split(',');
                 const studentName = eachStudent[0].trim();
@@ -37,13 +40,13 @@ const countStudents = (file) => {
                 if (Object.prototype.hasOwnProperty.call(countData, field)) {
                     console.log(`Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}`);
                 }
-
             }
 
+            // Resolve with the total students and count data
             return resolve({ totalStudents, countData });
         });
-
-    }); // This return is implicit, and it's fine here.
+    });
 };
 
+// Export the function for use in other files
 module.exports = countStudents;
