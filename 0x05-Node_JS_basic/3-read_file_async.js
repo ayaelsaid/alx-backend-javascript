@@ -37,4 +37,6 @@ const countStudents = (file) => new Promise((resolve, reject) => {
     });
 });
 
+return countStudents;
+
 module.exports = countStudents;
