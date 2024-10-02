@@ -36,10 +36,9 @@ const countStudents = (file) => new Promise((resolve, reject) => {
       if (Object.prototype.hasOwnProperty.call(countData, field)) {
         console.log(`Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}`);
       }
-    }
+      return resolve({ totalStudents, countData });
 
-    // Resolve the promise with the student count data
-    return resolve({ totalStudents, countData });
+    }
   });
 }) // This return is implicit, and it's fine here.
 ;
