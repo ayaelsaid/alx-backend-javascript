@@ -6,4 +6,10 @@
 function displayMessage(message){
     console.log(message)
 }
+/**
+ * Exports the displayMessage function.
+ * @module displayMessage
+ * @function
+ */
+
 module.exports = displayMessage;
