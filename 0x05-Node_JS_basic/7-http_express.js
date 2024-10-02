@@ -19,24 +19,24 @@ const countStudents = (file) => {
             const students = lines.slice(1); // Remove the header
 
             const totalStudents = `Number of students: ${students.length}`;
-            let count_data = {};
+            let countData = {};
 
             for (const student of students) {
-                const each_student = student.split(',');
-                const studentName = each_student[0].trim();
-                const fieldName = each_student[3].trim();
+                const eachStudent = student.split(',');
+                const studentName = eachStudent[0].trim();
+                const fieldName = eachStudent[3].trim();
 
-                if (!count_data[fieldName]) {
-                    count_data[fieldName] = { count: 0, names: [] };
+                if (!countData[fieldName]) {
+                    countData[fieldName] = { count: 0, names: [] };
                 }
-                count_data[fieldName].count += 1;
-                count_data[fieldName].names.push(studentName);
+                countData[fieldName].count += 1;
+                countData[fieldName].names.push(studentName);
             }
 
             let result = `${totalStudents}\n`;
 
-            for (const field in count_data) {
-                result += `Number of students in ${field}: ${count_data[field].count}. List: ${count_data[field].names.join(', ')}\n`;
+            for (const field in countData) {
+                result += `Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}\n`;
             }
 
             resolve(result.trim());
