@@ -33,7 +33,7 @@ const countStudents = (file) => new Promise((resolve, reject) => {
             }
         }
 
-        resolve({ totalStudents, countData });
+        return resolve(True);
     });
 });
 
