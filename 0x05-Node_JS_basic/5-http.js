@@ -18,7 +18,7 @@ const countStudents = (file) => new Promise((resolve, reject) => {
     const lines = data.split('\n').filter((line) => line.trim() !== '');
     const students = lines.slice(1); // Exclude header line
 
-    const totalStudents = `Number of students: ${students.length}`;
+    const totalStudents = `Number of students: ${students.length}\n`;
     const countData = {};
 
     // Process each student
@@ -35,17 +35,17 @@ const countStudents = (file) => new Promise((resolve, reject) => {
     }
 
     // Log total students
-    console.log(totalStudents);
+    // console.log(totalStudents);
 
     // Log each field's student data
     for (const field in countData) {
       if (Object.prototype.hasOwnProperty.call(countData, field)) {
-        console.log(`Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}`);
+        allData =`Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}\n`;
       }
     }
 
     // Resolve with the total students and count data
-    return resolve({ totalStudents, countData });
+    return resolve({ totalStudents, allData });
   });
 });
 const port = 1245;
