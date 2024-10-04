@@ -3,7 +3,7 @@ const assert = require('assert');
 const app = require('./api');
 
 describe('Index Page', () => {
-    it('check status code', (done) => {
+    it('return the correct status code', (done) => {
         request(app)
             .get('/')
             .end((err, res) => {
@@ -12,7 +12,7 @@ describe('Index Page', () => {
             });
     });
 
-    it('check message', (done) => {
+    it('return the correct message', (done) => {
         request(app)
             .get('/')
             .end((err, res) => {
@@ -20,8 +20,17 @@ describe('Index Page', () => {
                 done();
             });
     });
-  
-    it('check routes', (done) => {
+
+    it('check the correct content length', (done) => {
+        request(app)
+            .get('/')
+            .end((err, res) => {
+                assert.strictEqual(res.headers['content-length'], '29');
+                done();
+            });
+    });
+
+    it('handle routes correctly', (done) => {
         request(app)
             .get('/non-existent')
             .end((err, res) => {
