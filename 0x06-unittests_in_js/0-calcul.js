@@ -4,5 +4,4 @@ function calculateNumber(a, b) {
     const sum = rA + rB;
     return sum;
 }
-
 module.exports = calculateNumber;
