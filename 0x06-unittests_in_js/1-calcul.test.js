@@ -11,7 +11,7 @@ describe('calculateNumber', () => {
     });
 
     it('should return the result of the division', () => {
-        assert.strictEqual(calculateNumber('DIVIDE', 6.2, 3.7), 2);
+        assert.strictEqual(calculateNumber('DIVIDE', 6.2, 3.7), 1.5);
     });
 
     it('should return an error for division by zero', () => {
