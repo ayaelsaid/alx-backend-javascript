@@ -1,6 +1,6 @@
 const request = require('supertest');
 const assert = require('assert');
-const app = require('./api');  // Import the express app
+const app = require('./api');
 
 describe('Index Page', () => {
     it('checking status code', (done) => {
