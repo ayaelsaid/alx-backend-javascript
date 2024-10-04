@@ -24,4 +24,3 @@ describe('calculateNumber', () => {
         assert.strictEqual(calculateNumber(-1.6, -2.7), -4);
     });
 });
-});
