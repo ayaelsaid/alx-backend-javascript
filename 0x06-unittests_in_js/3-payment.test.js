@@ -1,7 +1,7 @@
 const assert = require('assert');
 const sinon = require('sinon');
 const Utils = require('./utils');
-const sendPaymentRequestToApi = require('./main');
+const sendPaymentRequestToApi = require('./3-payment');
 
 describe('sendPaymentRequestToApi', () => {
     it('should call Utils.calculateNumber', () => {
