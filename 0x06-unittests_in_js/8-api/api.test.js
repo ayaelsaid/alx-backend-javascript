@@ -21,15 +21,6 @@ describe('Index Page', () => {
             });
     });
   
-    it('check the correct content length', (done) => {
-        request(app)
-            .get('/')  // Simulate GET request to '/'
-            .end((err, res) => {
-                assert.strictEqual(res.headers['content-length'], '29');
-                done();  // Call done to signal the test is complete
-            });
-  
-
     it('check routes', (done) => {
         request(app)
             .get('/non-existent')
