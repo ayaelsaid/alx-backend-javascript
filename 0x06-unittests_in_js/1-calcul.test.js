@@ -3,15 +3,15 @@ const calculateNumber = require('./1-calcul');
 
 describe('calculateNumber', () => {
     it('should return the sum of rounded numbers', () => {
-        assert.strictEqual(calculateNumber('SUM', 1, 3), 4);
+        assert.strictEqual(calculateNumber('SUM, 1.4, 4.5), 6);
     });
 
     it('should return result of subtraction', () => {
-        assert.strictEqual(calculateNumber('SUBTRACT', 1, 3.7), -3);
+        assert.strictEqual(calculateNumber('SUBTRACT', 1.4, 4.5), -4);
     });
 
     it('should return the result of the division', () => {
-        assert.strictEqual(calculateNumber('DIVIDE', 6.2, 3.7), 1.5);
+        assert.strictEqual(calculateNumber('DIVIDE', 1.4, 4.5), 0.2);
     });
 
     it('should return an error for division by zero', () => {
