@@ -34,5 +34,4 @@ describe('sendPaymentRequestToApi', () => {
         assert.strictEqual(consoleLogSpy.calledWith('The total is: 20'), true);
     });
 
-    });
 });
