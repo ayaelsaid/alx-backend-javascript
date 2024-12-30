@@ -1,72 +1,51 @@
-const express = require('express');
-const fs = require('fs');
+// to handle routes
+const http = require('http');
+const countStudents = require('./3-read_file_async');
 
-const app = express();
-const port = 1245;
-
-const countStudents = (file) => new Promise((resolve, reject) => {
-  if (!fs.existsSync(file) || !fs.statSync(file).isFile()) {
-    return reject(new Error('Cannot load the database'));
-  }
-
-  fs.readFile(file, 'utf8', (err, data) => {
-    if (err) {
-      return reject(new Error('Cannot load the database'));
+const server = http.createServer((req, res) => {
+    if (req.url === '/') {
+      // Root URL
+      res.writeHead(200, { 'Content-Type': 'text/plain' });
+      res.write('Hello ALX!');
+      res.end();
+    } else if (req.url === '/students') {
+      // Students URL
+      countStudents('./data.csv')
+        .then(({ studentData, studentCount }) => {
+          res.writeHead(200, { 'Content-Type': 'text/plain' });
+          res.write('This is the list of our students:\n');
+          res.write(`Number of students: ${studentCount}\n`);
+          for (const [field, data] of Object.entries(studentData)) {
+            const [countKey, studentsKey] = Object.keys(data); // Dynamically get the keys
+            const count = data[countKey]; // Access the value of the "count" key
+            const students = data[studentsKey]; // Access the value of the "students" key
+          
+            res.write(`Number of students in ${field}: ${count}. List: ${students}\n`);
+          
+            // res.write(`Number of students in ${field}: ${data.count}. List: ${data.students}\n`);
+          
+          
+          }
+          res.end();
+        })
+        .catch((error) => {
+          console.error(error.message);
+          res.writeHead(500, { 'Content-Type': 'text/plain' });
+          res.write('Error: Cannot load the database.');
+          res.end();
+        });
+    } else {
+      // Unknown URL
+      res.writeHead(404, { 'Content-Type': 'text/plain' });
+      res.write('Page not found!');
+      res.end();
     }
-
-    const lines = data.split('\n').filter((line) => line.trim() !== '');
-    const students = lines.slice(1); // Remove the header
-
-    const totalStudents = `Number of students: ${students.length}`;
-    const countData = {};
-
-    for (const student of students) {
-      const eachStudent = student.split(',');
-      const studentName = eachStudent[0].trim();
-      const fieldName = eachStudent[3].trim();
-
-      if (!countData[fieldName]) {
-        countData[fieldName] = { count: 0, names: [] };
-      }
-      countData[fieldName].count += 1;
-      countData[fieldName].names.push(studentName);
-    }
-
-    let result = `${totalStudents}\n`;
-
-    for (const field in countData) {
-      result += `Number of students in ${field}: ${countData[field].count}. List: ${countData[field].names.join(', ')}\n`;
-    }
-
-    resolve(result.trim());
   });
-});
+  
+  // Listen on port 1245
+  server.listen(1245, () => {
+    console.log('Server is running at http://localhost:1245/');
+  });
 
-app.get('/', (__, res) => {
-  res.setHeader('Content-Type', 'text/plain');
-  res.status(200).send('Hello Holberton School!');
-});
-
-app.get('/students', async (__, res) => {
-  const FILE = process.argv.length > 2 ? process.argv[2] : '';
-
-  try {
-    const data = await countStudents(FILE);
-    res.setHeader('Content-Type', 'text/plain');
-    res.status(200).send(`This is the list of our students:\n${data}`);
-  } catch (error) {
-    res.setHeader('Content-Type', 'text/plain');
-    res.status(500).send('Cannot load the database\n');
-  }
-});
-
-app.use((__, res) => {
-  res.setHeader('Content-Type', 'text/plain');
-  res.status(404).send('404 Not Found\n');
-});
-
-app.listen(port, () => {
-  console.log(`Server is running on http://localhost:${port}`);
-});
 
 module.exports = app;
